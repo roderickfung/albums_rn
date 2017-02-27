@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Linking } from 'react-native';
 import Card from './card';
 import CardSection from './cardsection';
+import Button from './button';
 
 const AlbumDetail = ({ data }) => {
 
-  const { title, artist, image, thumbnail_image} = data;
+  const { title, artist, image, thumbnail_image, url } = data;
   const {
     thumbnailStyle,
     textContentStyle,
@@ -17,20 +18,24 @@ const AlbumDetail = ({ data }) => {
   return (
     <Card>
       <CardSection>
-        <View style={thumbnailContainerStyle}>
-          <Image style={thumbnailStyle} source={{ uri: thumbnail_image}} />
+        <View style={ thumbnailContainerStyle }>
+          <Image style={ thumbnailStyle } source={{ uri: thumbnail_image}} />
         </View>
-        <View style={textContentStyle}>
-          <Text style={titleStyle}>{ title }</Text>
+        <View style={ textContentStyle }>
+          <Text style={ titleStyle }>{ title }</Text>
           <Text>{ artist }</Text>
         </View>
       </CardSection>
 
-      <Cardsection>
-        <View>
-          <Image style={artworkStyle} source={{ uri: image}} />
-        </View>
-      </Cardsection>
+      <CardSection>
+        <Image style={ artworkStyle } source={{ uri: image }} />
+      </CardSection>
+
+      <CardSection>
+        <Button onPress={ () => Linking.openURL(url) }>
+          Purchase
+        </Button>
+      </CardSection>
     </Card>
   );
 };
@@ -55,7 +60,8 @@ const styles = {
   },
   artworkStyle: {
     height: 300,
-    width: 300
+    flex: 1,
+    width: null
   }
 }
 

@@ -12,7 +12,7 @@ import AlbumList from './src/components/albumlist';
 // Javascript function that returns some JSX.
 
 const App = () => (
-  <View>
+  <View style={{ flex: 1 }}>
     <Header headerText={'Albums'} />
     <AlbumList />
   </View>
